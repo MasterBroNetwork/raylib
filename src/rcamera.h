@@ -505,8 +505,8 @@ void UpdateCamera(Camera *camera, int mode)
 
         if (mode == CAMERA_FREE)
         {
-            if (IsKeyDown(KEY_SPACE)) CameraMoveUp(camera, (camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed);
-            if (IsKeyDown(KEY_LEFT_CONTROL)) CameraMoveUp(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed);
+            if (IsKeyDown(KEY_SPACE)) CameraMoveUp(camera, camera->cameraMoveSpeed);
+            if (IsKeyDown(KEY_LEFT_CONTROL)) CameraMoveUp(camera, -camera->cameraMoveSpeed);
         }
     }
 
