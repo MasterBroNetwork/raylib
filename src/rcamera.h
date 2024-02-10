@@ -103,7 +103,7 @@
         Vector3 position;       // Camera position
         Vector3 target;         // Camera target it looks-at
         Vector3 up;             // Camera up vector (rotation over its axis)
-        float cameraMoveSpeed = 0.09f;  // Camera move speed: 0.09f by default
+        float cameraMoveSpeed;  // Camera move speed: 0.09f by default
         float fovy;             // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
         int projection;         // Camera projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
     } Camera3D;
@@ -481,10 +481,10 @@ void UpdateCamera(Camera *camera, int mode)
         }
 
         // Keyboard support
-        if (IsKeyDown(KEY_W)) CameraMoveForward(camera, camera->cameraMoveSpeed, moveInWorldPlane);
-        if (IsKeyDown(KEY_A)) CameraMoveRight(camera, -camera->cameraMoveSpeed, moveInWorldPlane);
-        if (IsKeyDown(KEY_S)) CameraMoveForward(camera, -camera->cameraMoveSpeed, moveInWorldPlane);
-        if (IsKeyDown(KEY_D)) CameraMoveRight(camera, camera->cameraMoveSpeed, moveInWorldPlane);
+        if (IsKeyDown(KEY_W)) CameraMoveForward(camera, camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED, moveInWorldPlane);
+        if (IsKeyDown(KEY_A)) CameraMoveRight(camera, -camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED, moveInWorldPlane);
+        if (IsKeyDown(KEY_S)) CameraMoveForward(camera, -camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED, moveInWorldPlane);
+        if (IsKeyDown(KEY_D)) CameraMoveRight(camera, camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED, moveInWorldPlane);
 
         // Gamepad movement
         if (IsGamepadAvailable(0))
