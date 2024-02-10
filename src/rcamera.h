@@ -485,10 +485,10 @@ void UpdateCamera(Camera *camera, int mode)
         }
 
         // Keyboard support
-        if (IsKeyDown(KEY_W)) CameraMoveForward(camera, camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED, moveInWorldPlane);
-        if (IsKeyDown(KEY_A)) CameraMoveRight(camera, -camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED, moveInWorldPlane);
-        if (IsKeyDown(KEY_S)) CameraMoveForward(camera, -camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED, moveInWorldPlane);
-        if (IsKeyDown(KEY_D)) CameraMoveRight(camera, camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED, moveInWorldPlane);
+        if (IsKeyDown(KEY_W)) CameraMoveForward(camera, camera->cameraMoveSpeed, moveInWorldPlane);
+        if (IsKeyDown(KEY_A)) CameraMoveRight(camera, -camera->cameraMoveSpeed, moveInWorldPlane);
+        if (IsKeyDown(KEY_S)) CameraMoveForward(camera, -camera->cameraMoveSpeed, moveInWorldPlane);
+        if (IsKeyDown(KEY_D)) CameraMoveRight(camera, camera->cameraMoveSpeed, moveInWorldPlane);
 
         // Gamepad movement
         if (IsGamepadAvailable(0))
@@ -505,8 +505,8 @@ void UpdateCamera(Camera *camera, int mode)
 
         if (mode == CAMERA_FREE)
         {
-            if (IsKeyDown(KEY_SPACE)) CameraMoveUp(camera, (camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : CAMERA_MOVE_SPEED);
-            if (IsKeyDown(KEY_LEFT_CONTROL)) CameraMoveUp(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED);
+            if (IsKeyDown(KEY_SPACE)) CameraMoveUp(camera, (camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed);
+            if (IsKeyDown(KEY_LEFT_CONTROL)) CameraMoveUp(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed);
         }
     }
 
