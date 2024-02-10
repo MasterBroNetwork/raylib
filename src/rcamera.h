@@ -103,7 +103,7 @@
         Vector3 position;       // Camera position
         Vector3 target;         // Camera target it looks-at
         Vector3 up;             // Camera up vector (rotation over its axis)
-        float cameraMoveSpeed;  // Camera move speed: 0.09f by default
+        float cameraMoveSpeed = 0.09f;  // Camera move speed: 0.09f by default
         float fovy;             // Camera field-of-view apperture in Y (degrees) in perspective, used as near plane width in orthographic
         int projection;         // Camera projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC
     } Camera3D;
@@ -482,8 +482,8 @@ void UpdateCamera(Camera *camera, int mode)
 
         // Keyboard support
         if (IsKeyDown(KEY_W)) CameraMoveForward(camera, (camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : CAMERA_MOVE_SPEED, moveInWorldPlane);
-        if (IsKeyDown(KEY_A)) CameraMoveRight(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : CAMERA_MOVE_SPEED, moveInWorldPlane);
-        if (IsKeyDown(KEY_S)) CameraMoveForward(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : CAMERA_MOVE_SPEED, moveInWorldPlane);
+        if (IsKeyDown(KEY_A)) CameraMoveRight(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED, moveInWorldPlane);
+        if (IsKeyDown(KEY_S)) CameraMoveForward(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED, moveInWorldPlane);
         if (IsKeyDown(KEY_D)) CameraMoveRight(camera, (camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : CAMERA_MOVE_SPEED, moveInWorldPlane);
 
         // Gamepad movement
@@ -494,15 +494,15 @@ void UpdateCamera(Camera *camera, int mode)
             CameraPitch(camera, -(GetGamepadAxisMovement(0, GAMEPAD_AXIS_RIGHT_Y) * 2)*CAMERA_MOUSE_MOVE_SENSITIVITY, lockView, rotateAroundTarget, rotateUp);
 
             if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_Y) <= -0.25f) CameraMoveForward(camera, (camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : CAMERA_MOVE_SPEED, moveInWorldPlane);
-            if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_X) <= -0.25f) CameraMoveRight(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : CAMERA_MOVE_SPEED, moveInWorldPlane);
-            if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_Y) >= 0.25f) CameraMoveForward(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : CAMERA_MOVE_SPEED, moveInWorldPlane);
+            if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_X) <= -0.25f) CameraMoveRight(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED, moveInWorldPlane);
+            if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_Y) >= 0.25f) CameraMoveForward(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED, moveInWorldPlane);
             if (GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_X) >= 0.25f) CameraMoveRight(camera, (camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : CAMERA_MOVE_SPEED, moveInWorldPlane);
         }
 
         if (mode == CAMERA_FREE)
         {
             if (IsKeyDown(KEY_SPACE)) CameraMoveUp(camera, (camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : CAMERA_MOVE_SPEED);
-            if (IsKeyDown(KEY_LEFT_CONTROL)) CameraMoveUp(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : CAMERA_MOVE_SPEED);
+            if (IsKeyDown(KEY_LEFT_CONTROL)) CameraMoveUp(camera, -(camera->cameraMoveSpeed != 0.0f) ? camera->cameraMoveSpeed : -CAMERA_MOVE_SPEED);
         }
     }
 
