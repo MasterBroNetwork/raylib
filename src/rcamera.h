@@ -100,10 +100,6 @@
 
     // Camera type, defines a camera position/orientation in 3d space
     typedef struct Camera3D {
-        Camera3D() : cameraMoveSpeed(0.09f) {
-
-        }
-
         Vector3 position;       // Camera position
         Vector3 target;         // Camera target it looks-at
         Vector3 up;             // Camera up vector (rotation over its axis)
